@@ -6,7 +6,7 @@
 
 add_filter( 'wpcf7_special_mail_tags', 'wpcf7_special_mail_tag', 10, 3 );
 
-function wpcf7_special_mail_tag( $output, $name, $html ) {
+function wpcf7_special_mail_tag( $output, $name, $html="" ) {
 	$name = preg_replace( '/^wpcf7\./', '_', $name ); // for back-compat
 
 	$submission = WPCF7_Submission::get_instance();
@@ -63,7 +63,7 @@ function wpcf7_special_mail_tag( $output, $name, $html ) {
 
 add_filter( 'wpcf7_special_mail_tags', 'wpcf7_post_related_smt', 10, 3 );
 
-function wpcf7_post_related_smt( $output, $name, $html ) {
+function wpcf7_post_related_smt( $output, $name, $html="" ) {
 	if ( '_post_' != substr( $name, 0, 6 ) ) {
 		return $output;
 	}
@@ -112,7 +112,7 @@ function wpcf7_post_related_smt( $output, $name, $html ) {
 
 add_filter( 'wpcf7_special_mail_tags', 'wpcf7_site_related_smt', 10, 3 );
 
-function wpcf7_site_related_smt( $output, $name, $html ) {
+function wpcf7_site_related_smt( $output, $name, $html="" ) {
 	$filter = $html ? 'display' : 'raw';
 
 	if ( '_site_title' == $name ) {
@@ -136,7 +136,7 @@ function wpcf7_site_related_smt( $output, $name, $html ) {
 
 add_filter( 'wpcf7_special_mail_tags', 'wpcf7_user_related_smt', 10, 3 );
 
-function wpcf7_user_related_smt( $output, $name, $html ) {
+function wpcf7_user_related_smt( $output, $name, $html="" ) {
 	if ( '_user_' != substr( $name, 0, 6 )
 	or '_user_agent' == $name ) {
 		return $output;
