@@ -359,10 +359,10 @@ class WPCF7_Submission {
 		$tags = $this->contact_form->scan_form_tags( array(
 		  'feature' => '! file-uploading',
 		) );
-
+		$args = $this->get_posted_data();
 		foreach ( $tags as $tag ) {
 			$type = $tag->type;
-			$result = apply_filters( "wpcf7_validate_{$type}", $result, $tag );
+			$result = apply_filters( "wpcf7_validate_{$type}", $result, $tag ,$args );
 		}
 
 		$result = apply_filters( 'wpcf7_validate', $result, $tags );
